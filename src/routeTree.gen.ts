@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
+import { Route as AuthenticatedStudentRouteImport } from './routes/_authenticated/student'
 import { Route as ApiForgeRouteImport } from './routes/api/forge'
 
 const IndexRoute = IndexRouteImport.update({
@@ -28,6 +29,11 @@ const AuthenticatedOnboardingRoute = AuthenticatedOnboardingRouteImport.update({
   path: '/onboarding',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedStudentRoute = AuthenticatedStudentRouteImport.update({
+  id: '/student',
+  path: '/student',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const ApiForgeRoute = ApiForgeRouteImport.update({
   id: '/api/forge',
   path: '/api/forge',
@@ -37,11 +43,13 @@ const ApiForgeRoute = ApiForgeRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/student': typeof AuthenticatedStudentRoute
   '/api/forge': typeof ApiForgeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/student': typeof AuthenticatedStudentRoute
   '/api/forge': typeof ApiForgeRoute
 }
 export interface FileRoutesById {
@@ -49,18 +57,20 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
+  '/_authenticated/student': typeof AuthenticatedStudentRoute
   '/api/forge': typeof ApiForgeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/onboarding' | '/api/forge'
+  fullPaths: '/' | '/onboarding' | '/student' | '/api/forge'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/onboarding' | '/api/forge'
+  to: '/' | '/onboarding' | '/student' | '/api/forge'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/_authenticated/onboarding'
+    | '/_authenticated/student'
     | '/api/forge'
   fileRoutesById: FileRoutesById
 }
@@ -93,6 +103,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedOnboardingRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/student': {
+      id: '/_authenticated/student'
+      path: '/student'
+      fullPath: '/student'
+      preLoaderRoute: typeof AuthenticatedStudentRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/api/forge': {
       id: '/api/forge'
       path: '/api/forge'
@@ -105,10 +122,12 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedOnboardingRoute: typeof AuthenticatedOnboardingRoute
+  AuthenticatedStudentRoute: typeof AuthenticatedStudentRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedOnboardingRoute: AuthenticatedOnboardingRoute,
+  AuthenticatedStudentRoute: AuthenticatedStudentRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
