@@ -14,7 +14,282 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      assessment_results: {
+        Row: {
+          id: string
+          score: number
+          strong_areas: string[]
+          student_email: string
+          taken_at: string
+          total: number
+          weak_areas: string[]
+        }
+        Insert: {
+          id?: string
+          score: number
+          strong_areas?: string[]
+          student_email: string
+          taken_at?: string
+          total?: number
+          weak_areas?: string[]
+        }
+        Update: {
+          id?: string
+          score?: number
+          strong_areas?: string[]
+          student_email?: string
+          taken_at?: string
+          total?: number
+          weak_areas?: string[]
+        }
+        Relationships: []
+      }
+      certifications: {
+        Row: {
+          area: string
+          id: string
+          link: string
+          provider: string
+          title: string
+          type: string
+        }
+        Insert: {
+          area: string
+          id?: string
+          link: string
+          provider: string
+          title: string
+          type: string
+        }
+        Update: {
+          area?: string
+          id?: string
+          link?: string
+          provider?: string
+          title?: string
+          type?: string
+        }
+        Relationships: []
+      }
+      courses: {
+        Row: {
+          area: string
+          duration: string | null
+          id: string
+          link: string
+          platform: string
+          thumbnail_url: string | null
+          title: string
+        }
+        Insert: {
+          area: string
+          duration?: string | null
+          id?: string
+          link: string
+          platform: string
+          thumbnail_url?: string | null
+          title: string
+        }
+        Update: {
+          area?: string
+          duration?: string | null
+          id?: string
+          link?: string
+          platform?: string
+          thumbnail_url?: string | null
+          title?: string
+        }
+        Relationships: []
+      }
+      internships: {
+        Row: {
+          company: string
+          field: string
+          id: string
+          link: string
+          location: string
+          stipend: string | null
+          title: string
+          type: string
+        }
+        Insert: {
+          company: string
+          field: string
+          id?: string
+          link: string
+          location: string
+          stipend?: string | null
+          title: string
+          type: string
+        }
+        Update: {
+          company?: string
+          field?: string
+          id?: string
+          link?: string
+          location?: string
+          stipend?: string | null
+          title?: string
+          type?: string
+        }
+        Relationships: []
+      }
+      jobs: {
+        Row: {
+          company: string
+          field: string
+          id: string
+          link: string
+          location: string
+          salary_range: string
+          skills: string[]
+          title: string
+        }
+        Insert: {
+          company: string
+          field?: string
+          id?: string
+          link: string
+          location: string
+          salary_range: string
+          skills?: string[]
+          title: string
+        }
+        Update: {
+          company?: string
+          field?: string
+          id?: string
+          link?: string
+          location?: string
+          salary_range?: string
+          skills?: string[]
+          title?: string
+        }
+        Relationships: []
+      }
+      messages: {
+        Row: {
+          body: string
+          created_at: string
+          id: string
+          recipient_email: string
+          sender_email: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          id?: string
+          recipient_email: string
+          sender_email: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          id?: string
+          recipient_email?: string
+          sender_email?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string
+          full_name: string | null
+          id: string
+          onboarded: boolean
+          role: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          full_name?: string | null
+          id: string
+          onboarded?: boolean
+          role?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          full_name?: string | null
+          id?: string
+          onboarded?: boolean
+          role?: string
+        }
+        Relationships: []
+      }
+      questions: {
+        Row: {
+          correct_index: number
+          difficulty: string
+          id: string
+          options: string[]
+          question: string
+          subject: string
+        }
+        Insert: {
+          correct_index: number
+          difficulty?: string
+          id?: string
+          options: string[]
+          question: string
+          subject: string
+        }
+        Update: {
+          correct_index?: number
+          difficulty?: string
+          id?: string
+          options?: string[]
+          question?: string
+          subject?: string
+        }
+        Relationships: []
+      }
+      students: {
+        Row: {
+          assessments_taken: number
+          avg_score: number
+          branch: string | null
+          course: string | null
+          created_at: string
+          email: string
+          id: string
+          interest: string | null
+          internships_done: number
+          name: string
+          photo_url: string | null
+          resume_url: string | null
+        }
+        Insert: {
+          assessments_taken?: number
+          avg_score?: number
+          branch?: string | null
+          course?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          interest?: string | null
+          internships_done?: number
+          name: string
+          photo_url?: string | null
+          resume_url?: string | null
+        }
+        Update: {
+          assessments_taken?: number
+          avg_score?: number
+          branch?: string | null
+          course?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          interest?: string | null
+          internships_done?: number
+          name?: string
+          photo_url?: string | null
+          resume_url?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
