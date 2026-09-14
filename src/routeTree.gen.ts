@@ -11,7 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthenticatedCollegeRouteImport } from './routes/_authenticated/college'
 import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
+import { Route as AuthenticatedRecruiterRouteImport } from './routes/_authenticated/recruiter'
 import { Route as AuthenticatedStudentRouteImport } from './routes/_authenticated/student'
 import { Route as ApiForgeRouteImport } from './routes/api/forge'
 import { Route as AuthenticatedStudentIndexRouteImport } from './routes/_authenticated/student.index'
@@ -28,9 +30,19 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedCollegeRoute = AuthenticatedCollegeRouteImport.update({
+  id: '/college',
+  path: '/college',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedOnboardingRoute = AuthenticatedOnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedRecruiterRoute = AuthenticatedRecruiterRouteImport.update({
+  id: '/recruiter',
+  path: '/recruiter',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedStudentRoute = AuthenticatedStudentRouteImport.update({
@@ -70,7 +82,9 @@ const AuthenticatedStudentJobsRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/college': typeof AuthenticatedCollegeRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/recruiter': typeof AuthenticatedRecruiterRoute
   '/student': typeof AuthenticatedStudentRouteWithChildren
   '/api/forge': typeof ApiForgeRoute
   '/student/assess': typeof AuthenticatedStudentAssessRoute
@@ -80,7 +94,9 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/college': typeof AuthenticatedCollegeRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/recruiter': typeof AuthenticatedRecruiterRoute
   '/api/forge': typeof ApiForgeRoute
   '/student/assess': typeof AuthenticatedStudentAssessRoute
   '/student/internships': typeof AuthenticatedStudentInternshipsRoute
@@ -91,7 +107,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/_authenticated/college': typeof AuthenticatedCollegeRoute
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
+  '/_authenticated/recruiter': typeof AuthenticatedRecruiterRoute
   '/_authenticated/student': typeof AuthenticatedStudentRouteWithChildren
   '/api/forge': typeof ApiForgeRoute
   '/_authenticated/student/assess': typeof AuthenticatedStudentAssessRoute
@@ -103,7 +121,9 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/college'
     | '/onboarding'
+    | '/recruiter'
     | '/student'
     | '/api/forge'
     | '/student/assess'
@@ -113,7 +133,9 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/college'
     | '/onboarding'
+    | '/recruiter'
     | '/api/forge'
     | '/student/assess'
     | '/student/internships'
@@ -123,7 +145,9 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_authenticated'
+    | '/_authenticated/college'
     | '/_authenticated/onboarding'
+    | '/_authenticated/recruiter'
     | '/_authenticated/student'
     | '/api/forge'
     | '/_authenticated/student/assess'
@@ -154,11 +178,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/college': {
+      id: '/_authenticated/college'
+      path: '/college'
+      fullPath: '/college'
+      preLoaderRoute: typeof AuthenticatedCollegeRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/onboarding': {
       id: '/_authenticated/onboarding'
       path: '/onboarding'
       fullPath: '/onboarding'
       preLoaderRoute: typeof AuthenticatedOnboardingRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/recruiter': {
+      id: '/_authenticated/recruiter'
+      path: '/recruiter'
+      fullPath: '/recruiter'
+      preLoaderRoute: typeof AuthenticatedRecruiterRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/student': {
@@ -224,12 +262,16 @@ const AuthenticatedStudentRouteWithChildren =
   AuthenticatedStudentRoute._addFileChildren(AuthenticatedStudentRouteChildren)
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedCollegeRoute: typeof AuthenticatedCollegeRoute
   AuthenticatedOnboardingRoute: typeof AuthenticatedOnboardingRoute
+  AuthenticatedRecruiterRoute: typeof AuthenticatedRecruiterRoute
   AuthenticatedStudentRoute: typeof AuthenticatedStudentRouteWithChildren
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedCollegeRoute: AuthenticatedCollegeRoute,
   AuthenticatedOnboardingRoute: AuthenticatedOnboardingRoute,
+  AuthenticatedRecruiterRoute: AuthenticatedRecruiterRoute,
   AuthenticatedStudentRoute: AuthenticatedStudentRouteWithChildren,
 }
 
