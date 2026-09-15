@@ -65,6 +65,7 @@ function Assess() {
     const bySubject = new Map<string, { right: number; total: number }>();
     let score = 0;
     questions.forEach((q, i) => {
+      if (!q) return;
       const s = bySubject.get(q.subject) ?? { right: 0, total: 0 };
       s.total += 1;
       if (all[i] === q.correct_index) {

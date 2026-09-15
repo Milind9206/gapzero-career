@@ -23,7 +23,7 @@ function StudentLayout() {
     <AppShell
       roleLabel="Student"
       userName={student?.name ?? profile?.full_name ?? "Student"}
-      photoUrl={student?.photo_url}
+      photoUrl={student?.photo_url ?? null}
       nav={[
         { to: "/student", label: "Home" },
         { to: "/student/internships", label: "Interns" },

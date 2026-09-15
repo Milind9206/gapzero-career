@@ -61,7 +61,7 @@ function Onboarding() {
       const { error: sErr } = await supabase.from("students").upsert(
         {
           email: profile.email,
-          name: name || profile.email.split("@")[0],
+          name: name || profile.email.split("@")[0] || "Student",
           course,
           branch,
           interest,
