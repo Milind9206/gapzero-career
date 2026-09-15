@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { Forge } from "@/components/Forge";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { LogOut } from "lucide-react";
 
 export type NavItem = { to: string; label: string };
@@ -65,6 +66,7 @@ export function AppShell({
                 {userName.slice(0, 1).toUpperCase()}
               </div>
             )}
+            <ThemeToggle />
             <button
               onClick={signOut}
               aria-label="Sign out"
