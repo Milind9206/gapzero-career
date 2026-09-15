@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { homeForRole, type Role } from "@/hooks/useAuth";
 import { Backdrop } from "@/components/AppShell";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { toast } from "sonner";
 import { GraduationCap, Building2, Briefcase, Loader2 } from "lucide-react";
 
@@ -134,6 +135,7 @@ function AuthPage() {
               Close the skill gap
             </p>
           </div>
+          <ThemeToggle className="ml-auto" />
         </div>
 
         <section className="spectrum-edge animate-rise rounded-3xl bg-glass p-5 backdrop-blur-md">
